@@ -1,0 +1,44 @@
+name: Update JSON From CSV
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "DataSheet/**/*.csv"
+      - "DataSheet/**/*.CSV"
+
+permissions:
+  contents: write
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install converter dependency
+        run: pip install pandas
+
+      - name: Convert CSV to JSON
+        run: python csv_to_json.py
+
+      - name: Copy generated JSON
+        run: |
+          mkdir -p ./Assets/StreamingAssets
+          cp -r ./json_output/*.json ./Assets/StreamingAssets/
+
+      - name: Commit generated JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./Assets/StreamingAssets/*.json
+          git diff --cached --quiet || git commit -m "Auto-update JSON files from CSV"
+          git push
