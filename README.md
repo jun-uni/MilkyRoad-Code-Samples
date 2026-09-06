@@ -4,7 +4,7 @@ Unity로 개발한 2D 우주 무역·RTS 전략 시뮬레이션 **Milky Road**�
 
 - 개발 기간: 2025.03–2025.06
 - 개발 결과: 완성, 데모 출시
-- 개발 형태: 기획 1명, 프로그래밍 3명, 아트 1명
+- 개발 형태: 기획 및 아트 1명, 프로그래밍 3명 (총 4명)
 - 담당: 함선 시스템, 워프 맵, 화물·거래, 랜덤 이벤트, 함선 전투, 데이터 제작 파이프라인
 - 주요 기술: C#, Unity 6, ScriptableObject, Object Pooling, GitHub Actions, Python
 - STOVE 데모: [Milky Road](https://store.onstove.com/ko/games/101477)
